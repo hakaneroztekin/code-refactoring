@@ -10,4 +10,8 @@ public class MovieStatementFactory {
                 return new ChildrensMovieStatementHandler();
         }
     }
+    
+     public IMovieStatementHandler getHandler(int value) {
+         return getHandler(MovieType.getByValue(value));
+     }
 }
