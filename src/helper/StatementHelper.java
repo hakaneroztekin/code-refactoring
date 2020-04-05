@@ -9,16 +9,35 @@ public class StatementHelper {
     }
     
     public void addSummary(Rental rental) {
-         return "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(statement.getTotalAmount()) + "\n";
+        String newSummary = new StringBuilder()
+            .append("\t")
+            .append(rental.getMovie().getTitle())
+            .append("\t")
+            .append(String.valueOf(statement.getTotalAmount()))
+            .append("\n")
+            .toString();
+        statement.setSummary(newSummary);
     }
     
     public void addSummary(Customer customer) {
-        return "Rental Record for " + customer.getName() + "\n";
+        String newSummary = new StringBuilder()
+            .append("Rental Record for ")
+            .append(customer.getName())
+            .append("\n")
+            .toString();
+        statement.setSummary(newSummary);
     }
     
     public void addSummary() {
-        return "Amount owed is " + String.valueOf(statement.getTotalAmount()) 
-            + "\n You earned " + String.valueOf(statement.getFrequentRenterPoints()) + " frequent renter points";
+        String newSummary = new StringBuilder()
+            .append(statement.getSummary())
+            .append("Amount owed is ")
+            .append(String.valueOf(statement.getTotalAmount()))
+            .append("\n You earned ")
+            .append(String.valueOf(statement.getFrequentRenterPoints()))
+            .append(" frequent renter points")
+            .toString();
+        statement.setSummary(newSummary);
     }
     
 }
