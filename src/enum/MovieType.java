@@ -10,4 +10,12 @@ public enum MovieType {
         this.value = value;
     }
     
+    public getByValue(int value) {
+        for(MovieType type : values()) {
+            if(type.getValue() == value) {
+                return type;
+            }
+        }
+    }
+    
 }

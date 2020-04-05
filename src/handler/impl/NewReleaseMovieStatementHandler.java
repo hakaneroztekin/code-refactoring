@@ -12,9 +12,9 @@ public class NewReleaseMovieStatementHandler implements IMovieStatementHandler {
         statement.setTotalAmount(totalAmount);
     }
     
-    private void updateFrequentRenterPoints(Rental rental, Statement statement) {
-        if (rental.getDaysRented() > 1) {
-            statement.setFrequentRenterPoints(statement.getRenterPoints() + 1);
-        } 
+    private void updateFrequentRenterPoints(Rental rental, Statement statement) {}
+        int frequentRenterPoints = statement.getRenterPoints();
+        frequentRenterPoints += rental.getDaysRented() > 1 ? 2 : 1;
+        statement.setFrequentRenterPoints(frequentRenterPoints);
     }
 }

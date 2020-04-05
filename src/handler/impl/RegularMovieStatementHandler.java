@@ -3,6 +3,7 @@ public class RegularMovieStatementHandler implements IMovieStatementHandler {
     @Override
     public void updateStatement(Rental rental, Statement statement) {
         updateTotalAmount(rental, statement);
+        updateFrequentRenterPoints(rental, statement);
     }
     
     private void updateTotalAmount(Rental rental, Statement statement) {
@@ -14,5 +15,9 @@ public class RegularMovieStatementHandler implements IMovieStatementHandler {
         }
         
         statement.setTotalAmount(totalAmount);
+    }
+    
+    private void updateFrequentRenterPoints(Rental rental, Statement statement) {
+	statement.setFrequentRenterPoints(statement.getRenterPoints() + 1);
     }
 }
