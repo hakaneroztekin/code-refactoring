@@ -1,35 +1,30 @@
 public class MovieService {
     
-      public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
-        Enumeration rentals = _rentals.elements();
-        String result = "Rental Record for " + _customer.getName() + "\n";
-        while (rentals.hasMoreElements()) {
-            double thisAmount = 0;
+      public String statement(Customer customer) {  
+        Statement statement = new Statement();
             
-            Statement statement = new Statement();
-            Rental each = (Rental) rentals.nextElement();
+        String summary = "Rental Record for " + _customer.getName() + "\n";
+          
+        for (Rental rental : customer.getRentals()) {
             
-
             //determine amounts for each line
             MovieTypeFactory
-                .getHandler(each.getMovie().getPriceCode())
-                .calculateStatement(each, statement);
+                .getHandler(rental.getMovie().getPriceCode())
+                .calculateStatement(rental, statement);
             
             // add frequent renter points
-            frequentRenterPoints++;
-            // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
-                frequentRenterPoints++;
+            statement.setFrequentRenterPoints(statement.getFrequentRenterPoints() + 1);
 
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            summary += buildRentalSummary(rental, statement);
 
         }         //add footer lines
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
-        return result;
+        summary += "Amount owed is " + String.valueOf(totalAmount) + "\n";
+        summary += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        return summary;
+    }
+    
+    private String buildRentalSummary(Rental rental, Statement statement) {
+        return "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(statement.getTotalAmount()) + "\n";
     }
 }
