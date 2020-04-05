@@ -8,7 +8,7 @@ public class RegularMovieStatementHandler implements IMovieStatementHandler {
         double totalAmount = statement.getTotalAmount();
         totalAmount += 2;
         
-        if(rental.getDaysRented() > 2) {
+        if (rental.getDaysRented() > 2) {
             totalAmount += (rental.getDaysRented() - 2) * 1.5;
         }
         

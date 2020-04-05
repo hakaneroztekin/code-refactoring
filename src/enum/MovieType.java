@@ -9,5 +9,5 @@ public enum MovieType {
     public MovieType(int value) {
         this.value = value;
     }
-
+    
 }
