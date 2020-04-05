@@ -6,8 +6,7 @@ public class MovieService {
           
         helper.addSummary(customer);
           
-        customer.getRentals()
-              .stream()
+        customer.getRentals().stream()
               .forEach(rental -> {
                 MovieTypeFactory
                     .getHandler(rental.getMovie().getPriceCode())
