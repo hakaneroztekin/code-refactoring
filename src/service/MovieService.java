@@ -3,14 +3,14 @@ public class MovieService {
       public String statement(Customer customer) {  
         Statement statement = new Statement();
             
-        String summary = "Rental Record for " + _customer.getName() + "\n";
+        String summary = "Rental Record for " + customer.getName() + "\n";
           
         for (Rental rental : customer.getRentals()) {
             
             //determine amounts for each line
             MovieTypeFactory
                 .getHandler(rental.getMovie().getPriceCode())
-                .calculateStatement(rental, statement);
+                .updateStatement(rental, statement);
             
             // add frequent renter points
             statement.setFrequentRenterPoints(statement.getFrequentRenterPoints() + 1);
@@ -28,3 +28,4 @@ public class MovieService {
         return "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(statement.getTotalAmount()) + "\n";
     }
 }
+

@@ -1,4 +1,4 @@
 public interface IMovieStatementHandler {
     
-    void calculateStatement(Rental rental, Statement statement);
+    void updateStatement(Rental rental, Statement statement);
 }
