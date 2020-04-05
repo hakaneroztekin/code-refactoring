@@ -1,4 +1,4 @@
-public class RegularMovieStatementHandler implements IMovieStatementHandler {
+public class NewReleaseMovieStatementHandler implements IMovieStatementHandler {
     
     public void calculateStatement(Rental rental, Statement statement) {
         calculateTotalAmount(rental, statement);
@@ -6,12 +6,7 @@ public class RegularMovieStatementHandler implements IMovieStatementHandler {
     
     private void calculateTotalAmount(Rental rental, Statement statement) {
         double totalAmount = statement.getTotalAmount();
-        totalAmount += 2;
-        
-        if(rental.getDaysRented() > 2) {
-            totalAmount += (rental.getDaysRented() - 2) * 1.5;
-        }
-        
+        totalAmount += rental.getDaysRented() * 3;
         statement.setTotalAmount(totalAmount);
     }
 }

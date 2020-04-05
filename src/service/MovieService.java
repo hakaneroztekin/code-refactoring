@@ -7,9 +7,12 @@ public class MovieService {
         String result = "Rental Record for " + getName() + "\n";
         while (rentals.hasMoreElements()) {
             double thisAmount = 0;
-            Rental each = (Rental) rentals.nextElement();
             
+            Statement statement = new Statement();
+            Rental each = (Rental) rentals.nextElement();
             MovieTypeFactory
+                .getHandler(each.getMovie().getPriceCode())
+                .calculateStatement(each, statement);
 
             //determine amounts for each line
             switch (each.getMovie().getPriceCode()) {

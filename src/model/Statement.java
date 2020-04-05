@@ -1,3 +1,4 @@
+@Data
 public class Statement {
     
     private double totalAmount;
