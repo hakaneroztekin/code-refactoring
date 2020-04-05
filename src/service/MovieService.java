@@ -8,6 +8,8 @@ public class MovieService {
         while (rentals.hasMoreElements()) {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
+            
+            MovieTypeFactory
 
             //determine amounts for each line
             switch (each.getMovie().getPriceCode()) {
