@@ -4,17 +4,17 @@ public class MovieService {
         Statement statement = new Statement();
         StatementHelper helper = new StatementHelper(statement);
           
-        helper.addSummary(customer);
+        helper.updateSummary(customer);
           
         customer.getRentals().stream()
               .forEach(rental -> {
                 MovieTypeFactory
                     .getHandler(rental.getMovie().getPriceCode())
                     .updateStatement(rental, statement);
-                helper.addSummary(rental);
+                helper.updateSummary(rental);
               });
           
-        helper.addSummary();
+        helper.updateSummary();
           
         return statement.getSummary();
     }

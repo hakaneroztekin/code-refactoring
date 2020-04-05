@@ -8,7 +8,7 @@ public class StatementHelper {
         this.statement = statement;
     }
     
-    public void addSummary(Rental rental) {
+    public void updateSummary(Rental rental) {
         String newSummary = new StringBuilder()
             .append("\t")
             .append(rental.getMovie().getTitle())
@@ -19,7 +19,7 @@ public class StatementHelper {
         statement.setSummary(newSummary);
     }
     
-    public void addSummary(Customer customer) {
+    public void updateSummary(Customer customer) {
         String newSummary = new StringBuilder()
             .append("Rental Record for ")
             .append(customer.getName())
@@ -28,7 +28,7 @@ public class StatementHelper {
         statement.setSummary(newSummary);
     }
     
-    public void addSummary() {
+    public void updateSummary() {
         String newSummary = new StringBuilder()
             .append(statement.getSummary())
             .append("Amount owed is ")
